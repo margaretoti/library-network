@@ -1,6 +1,8 @@
 FactoryGirl.define do
   factory :book do
-    title "The Golden Compass"
+    sequence :title do |n|
+      "The Golden Compass #{n}"
+    end
     author "Philip Pullman"
   end
 end

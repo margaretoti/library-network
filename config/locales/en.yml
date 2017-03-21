@@ -1,4 +1,13 @@
 en:
+  books:
+    index:
+      add_new_book_link: "Add a new book"
+      header: "Library Catalog"
+
+  labels:
+    title: "Title:"
+    author: "Author:"
+
   date:
     formats:
       default:

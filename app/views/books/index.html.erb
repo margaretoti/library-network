@@ -1,9 +1,11 @@
-<h1 class="page-title"> Library Catalog </h1>
+<h1 class="page-title"><%= t('.header') %></h1>
 
-<%= link_to "Add a new book", new_book_path %>
+
+<%= link_to t('.add_new_book_link'), new_book_path %>
 
 <ul class="books">
   <% @books.each do |book| %>
-    <li> Book: <%= book.title %> | Author: <%= book.author %></li>
+    <li> <%= t('labels.title') %> <%= book.title %> ,
+         <%= t('labels.author') %> <%= book.author %></li>
   <% end %>
 </ul>

@@ -1,8 +1,9 @@
-<h1>Library Catalog</h1>
+<h1 class="page-title"> Library Catalog </h1>
 
 <%= link_to "Add a new book", new_book_path %>
 
 <ul class="books">
   <% @books.each do |book| %>
     <li> Book: <%= book.title %> | Author: <%= book.author %></li>
-<% end %>
+  <% end %>
+</ul>

@@ -9,7 +9,7 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.create(book_params)
-    redirect_to books_path #persist book into the database
+    redirect_to books_path # persist book into the database
     # and then redirect back to books `index`, which displays all
     # books
   end

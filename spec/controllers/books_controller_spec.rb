@@ -11,7 +11,8 @@ describe BooksController do
   end
 
   describe '#create - POST/book' do
-    it 'returns 302 redirect status' do
+    it 'redirects to books#index after successfully saving the newly created
+    book to the database' do
 
       book_params = {
         book: {

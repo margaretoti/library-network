@@ -1,13 +1,15 @@
-require "rails_helper"
+require 'rails_helper'
 
 feature 'User sees a list of books' do
   scenario 'successfully' do
-
-    books = create_list(:book, 3)
+    books = create_pair(:book)
 
     visit books_path
 
-    expect(page).to have_css('ul.books', :count => 1)
-    expect(page).to have_css('.books li', :count => 3)
+    expect(page).to have_css('.books', :count => 2)
+
+    books.each do |book|
+      expect(page).to have_css('.books', text: book.title)
+    end
   end
 end

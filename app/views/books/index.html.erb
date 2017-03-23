@@ -1,11 +1,14 @@
 <h1 class="page-title"><%= t('.header') %></h1>
 
-
 <%= link_to t('.add_new_book_link'), new_book_path %>
 
 <ul class="books">
   <% @books.each do |book| %>
-    <li> <%= t('labels.title') %> <%= book.title %> ,
-         <%= t('labels.author') %> <%= book.author %></li>
+    <li>
+      <%= t('simple_form.labels.title') %>
+      <%= book.title %> ,
+      <%= t('simple_form.labels.author') %>
+      <%= book.author %>
+    </li>
   <% end %>
 </ul>

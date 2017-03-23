@@ -12,8 +12,8 @@ feature 'User creates a new book' do
 end
 
 def create_book(title, author)
-  click_on "Add a new book"
-  fill_in "Title", with: title
-  fill_in "Author", with: author
+  click_on t('books.index.add_new_book_link')
+  fill_in t('simple_form.labels.title'), with: title
+  fill_in t('simple_form.labels.author'), with: author
   click_on "Create Book"
 end

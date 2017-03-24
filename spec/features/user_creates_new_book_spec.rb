@@ -15,5 +15,6 @@ def create_book(title, author)
   click_on t('books.index.add_new_book_link')
   fill_in t('simple_form.labels.title'), with: title
   fill_in t('simple_form.labels.author'), with: author
-  click_on "Create Book"
+  click_on 'Create Book'
+  expect(page.current_path).to eq books_path
 end

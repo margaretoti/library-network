@@ -10,6 +10,8 @@
       <%= t('simple_form.labels.author') %>
       <%= book.author %>
       <%= link_to 'Edit', edit_book_path(book) %>
+      <%= link_to 'Delete', book, method: :delete,
+                                  data: { confirm: 'Are you sure?'} %>
     </li>
   <% end %>
 </ul>

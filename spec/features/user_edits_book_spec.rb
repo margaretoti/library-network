@@ -1,31 +1,32 @@
 require 'rails_helper'
 
 feature 'User edits an existing book' do
-  scenario 'updates title field successfully' do
-    @book = create(:book)
+  scenario 'updates title and author field successfully' do
+    book = create(:book)
     visit root_path
 
-    edit_book(@book, new_title: 'The Golden Compass',
-                     new_author: @book.author)
+    edit_book(new_title: 'The Golden Compass', new_author: 'Philip Pullman')
 
-    expect(page.current_path).to eq books_path
+    expect(page).to have_content(t('books.index.header'))
+    expect(page).to have_content(t('books.update.flash_success'))
+    expect(page).to have_content('The Golden Compass')
+    expect(page).to have_content('Philip Pullman')
   end
 
-  scenario 'updates title and author fields successfully' do
-    @book = create(:book)
+  scenario 'updates title field with empty title unsuccessfully' do
+    book = create(:book, author: 'Langston Hughes')
     visit root_path
 
-    edit_book(@book, new_title: 'The Amber Spyglass',
-                     new_author: 'Philip Pullman')
+    edit_book(new_title: '', new_author: book.author)
 
-    expect(page.current_path).to eq books_path
+    expect(page).to have_content(t('books.edit.header'))
+    expect(page).to have_content(t('books.validations.required'))
   end
 
-  def edit_book(book, options={})
-    click_on 'Edit'
-    visit edit_book_path(book)
-    fill_in 'Title', with: options[:new_title]
-    fill_in 'Author', with: options[:new_author]
-    click_button 'Save changes'
+  def edit_book(new_title:, new_author:)
+    click_on t('books.edit.link')
+    fill_in t('simple_form.labels.title'), with: new_title
+    fill_in t('simple_form.labels.author'), with: new_author
+    click_button t('books.update.button')
   end
 end

@@ -21,6 +21,11 @@ en:
     validations:
       required: "can\'t be blank"
 
+  layouts:
+    application:
+      sign_in: "Sign in"
+      sign_out: "Sign out"
+
   date:
     formats:
       default:

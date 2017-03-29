@@ -1,30 +1,30 @@
 en:
   books:
     new:
-      header: "Add a new book"
+      header: Add a new book
     index:
-      add_new_book_link: "Add a new book"
-      header: "Library Catalog"
+      add_new_book_link: Add a new book
+      header: Library Catalog
     edit:
-      header: "Edit this book"
-      link: "Edit"
+      header: Edit this book
+      link: Edit
     create:
-      button: "Create Book"
-      flash_success: "Book added"
+      button: Create Book
+      flash_success: Book added
     update:
-      button: "Update Book"
-      flash_success: "Book edited"
+      button: Update Book
+      flash_success: Book edited
     delete:
-      confirmation_text: "Are you sure?"
-      flash_success: "Book deleted"
-      link: "Delete"
+      confirmation_text: Are you sure?
+      flash_success: Book deleted
+      link: Delete
     validations:
       required: "can\'t be blank"
 
   layouts:
     application:
-      sign_in: "Sign in"
-      sign_out: "Sign out"
+      sign_in: Sign in
+      sign_out: Sign out
 
   date:
     formats:

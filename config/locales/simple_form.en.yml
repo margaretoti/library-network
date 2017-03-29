@@ -1,5 +1,5 @@
 en:
   simple_form:
     labels:
-      author: "Author"
-      title: "Title"
+      author: Author
+      title: Title

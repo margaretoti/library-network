@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20170330155058) do
     t.string   "confirmation_token", limit: 128
     t.string   "remember_token",     limit: 128,                 null: false
     t.string   "name",                                           null: false
-    t.boolean  "admin",                          default: false, null: false
+    t.boolean  "admin",                          default: false
     t.index ["email"], name: "index_users_on_email", using: :btree
     t.index ["remember_token"], name: "index_users_on_remember_token", using: :btree
   end

@@ -22,6 +22,13 @@ feature 'Admin creates a new book' do
     expect(page).to have_content(t('books.new.header'))
     expect(page).to have_content(t('books.validations.required'))
   end
+
+  def create_book(title, author)
+    click_on t('books.index.add_new_book_link')
+    fill_in t('simple_form.labels.title'), with: title
+    fill_in t('simple_form.labels.author'), with: author
+    click_button t('books.create.button')
+  end
 end
 
 feature 'Patron (non admin) cannot create a book' do
@@ -33,11 +40,4 @@ feature 'Patron (non admin) cannot create a book' do
     expect(page).to have_content(t('books.index.header'))
     expect(page).not_to have_content(t('books.index.add_new_book_link'))
   end
-end
-
-def create_book(title, author)
-  click_on t('books.index.add_new_book_link')
-  fill_in t('simple_form.labels.title'), with: title
-  fill_in t('simple_form.labels.author'), with: author
-  click_button t('books.create.button')
 end

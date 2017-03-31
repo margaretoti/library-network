@@ -5,8 +5,7 @@ feature 'Admin deletes a book', js: true do
     book = create(:book)
     admin = create(:user, admin: true)
 
-    sign_in_with(admin.email, admin.password)
-    visit root_path
+    visit root_path(as: admin)
 
     expect(page).to have_content(t('books.delete.link'))
 
@@ -16,6 +15,12 @@ feature 'Admin deletes a book', js: true do
     expect(page).to have_content(t('books.delete.flash_success'))
     expect(page).not_to have_content(book.title)
   end
+
+  def delete_book
+    accept_confirm t('books.delete.confirmation_text') do
+        click_on t('books.delete.link')
+    end
+  end
 end
 
 feature 'Patron (non admin) cannot delete a book' do
@@ -23,17 +28,9 @@ feature 'Patron (non admin) cannot delete a book' do
     book = create(:book)
     patron = create(:user, admin: false)
 
-    sign_in_with(patron.email, patron.password)
-    visit root_path
+    visit root_path(as: patron)
 
     expect(page).to have_content(t('books.index.header'))
     expect(page).not_to have_content(t('books.delete.link'))
-
-  end
-end
-
-def delete_book
-  accept_confirm t('books.delete.confirmation_text') do
-      click_on t('books.delete.link')
   end
 end

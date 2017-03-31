@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   before_action :require_admin, only: [:new, :edit, :create, :update, :destroy]
+  before_action :allow_anyone, only: :index
 
   def index
     @books = Book.all

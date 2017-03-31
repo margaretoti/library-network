@@ -3,9 +3,8 @@ require 'rails_helper'
 feature 'Admin creates a new book' do
   scenario 'successfully' do
     admin = create(:user, admin: true)
-    visit root_path
+    visit root_path(as: admin)
 
-    sign_in_with(admin.email, admin.password)
     create_book('The Fellowship of the Ring', 'J. R. R. Tolkien' )
 
     expect(page).to have_content(t('books.index.header'))
@@ -16,9 +15,8 @@ feature 'Admin creates a new book' do
 
   scenario "unsuccessfully - required field is missing" do
     admin = create(:user, admin: true)
-    visit root_path
+    visit root_path(as: admin)
 
-    sign_in_with(admin.email, admin.password)
     create_book('The Two Towers', '')
 
     expect(page).to have_content(t('books.new.header'))
@@ -26,12 +24,11 @@ feature 'Admin creates a new book' do
   end
 end
 
-feature 'Patron (non admin) can not create a book' do
+feature 'Patron (non admin) cannot create a book' do
   scenario 'ever' do
     patron = create(:user, admin: false)
-    visit root_path
 
-    sign_in_with(patron.email, patron.password)
+    visit root_path(as: patron)
 
     expect(page).to have_content(t('books.index.header'))
     expect(page).not_to have_content(t('books.index.add_new_book_link'))

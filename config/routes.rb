@@ -14,9 +14,5 @@ Rails.application.routes.draw do
   delete "/sign_out" => "clearance/sessions#destroy", as: "sign_out"
   get "/sign_up" => "users#new", as: "sign_up"
 
-  # resources :books, only: [:index, :new, :edit, :create, :update, :destroy]
-  resources :books, only: [:index]
-  constraints(Clearance::Constraints::SignedIn.new { |user| user.admin? }) do
-    resources :books, only: [:new, :edit, :create, :update, :destroy]
-  end
+  resources :books, only: [:index, :new, :edit, :create, :update, :destroy]
 end

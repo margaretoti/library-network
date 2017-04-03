@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'Admin deletes a book', js: true do
   scenario 'successfully' do
     book = create(:book)
-    admin = create(:user, admin: true)
+    admin = create(:user, :admin)
 
     visit root_path(as: admin)
 
@@ -26,7 +26,7 @@ end
 feature 'Patron (non admin) cannot delete a book' do
   scenario 'ever' do
     book = create(:book)
-    patron = create(:user, admin: false)
+    patron = create(:user, :patron)
 
     visit root_path(as: patron)
 

@@ -5,8 +5,15 @@ FactoryGirl.define do
 
   factory :user do
     name "Jon Smith"
-    admin false
     email
     password "password"
+
+    trait :admin do
+      admin true
+    end
+
+    trait :patron do
+      admin false
+    end
   end
 end

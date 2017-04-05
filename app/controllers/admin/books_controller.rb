@@ -1,5 +1,5 @@
 class Admin::BooksController < ApplicationController
-  before_action :require_admin, only: [:new, :edit, :create, :update, :destroy]
+  before_action :require_admin
 
   def new
     @book = Book.new

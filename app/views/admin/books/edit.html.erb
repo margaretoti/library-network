@@ -1,7 +1,3 @@
 <h2><%= t('books.edit.header') %> </h2>
 
-<%= simple_form_for @book, url: admin_book_path(@book) do |form| %>
-  <%= form.input :title, label: t('simple_form.labels.title') %>
-  <%= form.input :author, label: t('simple_form.labels.author') %>
-  <%= form.submit %>
-<% end %>
+<%= render 'form', book: @book %>

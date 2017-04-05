@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
 
   def ensure_authorization_checked
     if authorization_unchecked?
-      raise "Make sure to check authorization for this #{self.class.name}"
+      raise "Make sure to check authorization for #{self.class.name}"
     end
   end
 

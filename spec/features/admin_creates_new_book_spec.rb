@@ -5,7 +5,7 @@ feature 'Admin creates a new book' do
     admin = create(:user, :admin)
     visit root_path(as: admin)
 
-    create_book('The Fellowship of the Ring', 'J. R. R. Tolkien' )
+    create_book('The Fellowship of the Ring', 'J. R. R. Tolkien')
 
     expect(page).to have_content(t('books.index.header'))
     expect(page).to have_content(t('books.create.flash_success'))

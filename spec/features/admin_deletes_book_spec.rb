@@ -4,11 +4,8 @@ feature 'Admin deletes a book', js: true do
   scenario 'successfully' do
     book = create(:book)
     admin = create(:user, :admin)
-
     visit root_path(as: admin)
-
-    expect(page).to have_content(t('books.delete.link'))
-
+    
     delete_book
 
     expect(page).to have_content(t('books.index.header'))

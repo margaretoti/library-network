@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'Admin creates a new book' do
   scenario 'successfully' do
-    admin = create(:user, :admin)
+    admin = create(:admin)
     visit root_path(as: admin)
 
     create_book('The Fellowship of the Ring', 'J. R. R. Tolkien')
@@ -14,7 +14,7 @@ feature 'Admin creates a new book' do
   end
 
   scenario "unsuccessfully - required field is missing" do
-    admin = create(:user, :admin)
+    admin = create(:admin)
     visit root_path(as: admin)
 
     create_book('The Two Towers', '')
@@ -33,7 +33,7 @@ end
 
 feature 'Patron (non admin) cannot create a book' do
   scenario 'ever' do
-    patron = create(:user, :patron)
+    patron = create(:patron)
 
     visit root_path(as: patron)
 

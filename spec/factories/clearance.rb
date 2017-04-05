@@ -8,11 +8,11 @@ FactoryGirl.define do
     email
     password "password"
 
-    trait :admin do
+    factory :admin do
       admin true
     end
 
-    trait :patron do
+    factory :patron do
       admin false
     end
   end

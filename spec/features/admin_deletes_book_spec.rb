@@ -3,9 +3,9 @@ require 'rails_helper'
 feature 'Admin deletes a book', js: true do
   scenario 'successfully' do
     book = create(:book)
-    admin = create(:user, :admin)
+    admin = create(:admin)
     visit root_path(as: admin)
-    
+
     delete_book
 
     expect(page).to have_content(t('books.index.header'))
@@ -23,7 +23,7 @@ end
 feature 'Patron (non admin) cannot delete a book' do
   scenario 'ever' do
     book = create(:book)
-    patron = create(:user, :patron)
+    patron = create(:patron)
 
     visit root_path(as: patron)
 

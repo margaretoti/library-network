@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'User edits an existing book' do
   scenario 'updates title and author field successfully' do
     book = create(:book)
-    admin = create(:user, :admin)
+    admin = create(:admin)
     visit root_path(as: admin)
 
     edit_book(new_title: 'The Golden Compass', new_author: 'Philip Pullman')
@@ -16,7 +16,7 @@ feature 'User edits an existing book' do
 
   scenario 'updates title field with empty title unsuccessfully' do
     book = create(:book, author: 'Langston Hughes')
-    admin = create(:user, :admin)
+    admin = create(:admin)
     visit root_path(as: admin)
 
     edit_book(new_title: '', new_author: book.author)
@@ -36,7 +36,7 @@ end
 feature 'Patron (non admin) cannot edit a book' do
   scenario 'ever' do
     book = create(:book)
-    patron = create(:user, :patron)
+    patron = create(:patron)
 
     visit root_path(as: patron)
 

@@ -1,5 +1,5 @@
 class Admin::BooksController < ApplicationController
-  before_action :require_admin
+  before_action :require_login, :require_admin
 
   def index
     @books = Book.all

@@ -1,8 +1,8 @@
 module BookHelper
   def delete_book_link(book)
-    link_to t('books.delete.link'),
+    link_to t('.delete.link'),
       admin_book_path(book),
       method: :delete,
-      data: { confirm: t('books.delete.confirmation_text') }
+      data: { confirm: t('.delete.confirmation_text') }
   end
 end

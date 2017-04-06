@@ -1,9 +1,5 @@
 <h1 class="page-title"><%= t('.header') %></h1>
 
-<% if current_user&.admin %>
-  <%= link_to t('.add_new_book_link'), new_admin_book_path %>
-<% end %>
-
 <ul class="books">
   <% @books.each do |book| %>
     <li>
@@ -11,10 +7,6 @@
       <%= book.title %> ,
       <%= t('simple_form.labels.author') %>
       <%= book.author %>
-      <% if current_user&.admin %>
-        <%= link_to t('books.edit.link'), edit_admin_book_path(book) %>
-        <%= delete_book_link(book) %>
-      <% end %>
     </li>
   <% end %>
 </ul>

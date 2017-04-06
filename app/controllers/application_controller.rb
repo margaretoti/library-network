@@ -6,9 +6,26 @@ class ApplicationController < ActionController::Base
   private
 
   def require_admin
+    # if current_user.admin?
+    #   redirect_to controller: "admin/books"
+    # # else
+    # #   redirect_to root_path
+    # end
     unless current_user.admin?
       redirect_to root_path
     end
+    authorization_checked
+  end
+
+  def allow_non_admin_only
+    if !current_user || !current_user.admin?
+      authorization_checked
+    elsif current_user.admin?
+      redirect_to controller: "admin/books"
+    end
+    # unless !current_user.admin?
+    #   redirect_to controller: "admin/books"
+    # end
     authorization_checked
   end
 

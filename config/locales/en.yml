@@ -1,4 +1,16 @@
 en:
+  admin:
+    books:
+      index:
+        header: Welcome Admin to the Library Catalog
+        add_new_book_link: Add a new book
+        edit:
+          link: Edit
+        delete:
+          link: Delete
+          confirmation_text: Are you sure?
+      edit:
+        header: Edit this book
   books:
     new:
       header: Add a new book

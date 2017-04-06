@@ -17,7 +17,7 @@ class Admin::BooksController < ApplicationController
     @book = Book.new(book_params)
     if @book.save
       flash[:success] = t('admin.books.create.flash_success')
-      redirect_to books_path
+      redirect_to admin_books_path
     else
       render :new
     end
@@ -27,7 +27,7 @@ class Admin::BooksController < ApplicationController
     @book = Book.find(params[:id])
     if @book.update_attributes(book_params)
       flash[:success] = t('admin.books.update.flash_success')
-      redirect_to books_path
+      redirect_to admin_books_path
     else
       render :edit
     end
@@ -36,7 +36,7 @@ class Admin::BooksController < ApplicationController
   def destroy
     Book.find(params[:id]).destroy
     flash[:success] = t('admin.books.index.delete_flash_success')
-    redirect_to root_path
+    redirect_to admin_books_path
   end
 
   private

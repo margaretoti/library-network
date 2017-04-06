@@ -19,7 +19,7 @@ en:
         flash_success: Book edited
         button: Update Book
       validations:
-        required: "can\'t be blank"
+        required: "can't be blank"
 
   books:
     index:

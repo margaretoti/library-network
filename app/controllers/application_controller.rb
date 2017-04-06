@@ -12,15 +12,6 @@ class ApplicationController < ActionController::Base
     authorization_checked
   end
 
-  def allow_non_admin_only
-    if !current_user || !current_user.admin?
-      authorization_checked
-    elsif current_user.admin?
-      redirect_to controller: "admin/books"
-    end
-    authorization_checked
-  end
-
   def allow_anyone
     authorization_checked
   end

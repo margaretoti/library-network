@@ -4,7 +4,7 @@ feature 'User edits an existing book' do
   scenario 'updates title and author field successfully' do
     book = create(:book)
     admin = create(:admin)
-    visit root_path(as: admin)
+    visit admin_books_path(book, as: admin)
 
     edit_book(new_title: 'The Golden Compass', new_author: 'Philip Pullman')
 
@@ -17,7 +17,7 @@ feature 'User edits an existing book' do
   scenario 'updates title field with empty title unsuccessfully' do
     book = create(:book, author: 'Langston Hughes')
     admin = create(:admin)
-    visit root_path(as: admin)
+    visit admin_books_path(book, as: admin)
 
     edit_book(new_title: '', new_author: book.author)
 

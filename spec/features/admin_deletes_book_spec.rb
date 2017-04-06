@@ -4,7 +4,7 @@ feature 'Admin deletes a book', js: true do
   scenario 'successfully' do
     book = create(:book)
     admin = create(:admin)
-    visit root_path(as: admin)
+    visit admin_books_path(as: admin)
 
     delete_book
 

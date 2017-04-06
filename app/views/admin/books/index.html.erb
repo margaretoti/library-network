@@ -9,7 +9,7 @@
       <%= book.title %> ,
       <%= t('simple_form.labels.author') %>
       <%= book.author %>
-      <%= link_to t('.edit.link'), edit_admin_book_path(book) %>
+      <%= link_to t('.edit_link'), edit_admin_book_path(book) %>
       <%= delete_book_link(book) %>
     </li>
   <% end %>

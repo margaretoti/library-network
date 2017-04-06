@@ -2,36 +2,28 @@ en:
   admin:
     books:
       index:
-        header: Welcome Admin to the Library Catalog
+        header: Admin Library Catalog
         add_new_book_link: Add a new book
-        edit:
-          link: Edit
-        delete:
-          link: Delete
-          confirmation_text: Are you sure?
+        edit_link: Edit
+        delete_link: Delete
+        delete_confirmation_text: Are you sure?
+        delete_flash_success: Book deleted
+      new:
+        header: Add a new book
       edit:
         header: Edit this book
+      create:
+        flash_success: Book added
+        button: Create Book
+      update:
+        flash_success: Book edited
+        button: Update Book
+      validations:
+        required: "can\'t be blank"
+
   books:
-    new:
-      header: Add a new book
     index:
-      add_new_book_link: Add a new book
       header: Library Catalog
-    edit:
-      header: Edit this book
-      link: Edit
-    create:
-      button: Create Book
-      flash_success: Book added
-    update:
-      button: Update Book
-      flash_success: Book edited
-    delete:
-      confirmation_text: Are you sure?
-      flash_success: Book deleted
-      link: Delete
-    validations:
-      required: "can\'t be blank"
 
   layouts:
     application:

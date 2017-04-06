@@ -6,11 +6,6 @@ class ApplicationController < ActionController::Base
   private
 
   def require_admin
-    # if current_user.admin?
-    #   redirect_to controller: "admin/books"
-    # # else
-    # #   redirect_to root_path
-    # end
     unless current_user.admin?
       redirect_to root_path
     end
@@ -23,9 +18,6 @@ class ApplicationController < ActionController::Base
     elsif current_user.admin?
       redirect_to controller: "admin/books"
     end
-    # unless !current_user.admin?
-    #   redirect_to controller: "admin/books"
-    # end
     authorization_checked
   end
 

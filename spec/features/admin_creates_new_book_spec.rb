@@ -30,14 +30,3 @@ feature 'Admin creates a new book' do
     click_button t('books.create.button')
   end
 end
-
-feature 'Patron (non admin) cannot create a book' do
-  scenario 'ever' do
-    patron = create(:patron)
-
-    visit root_path(as: patron)
-
-    expect(page).to have_content(t('books.index.header'))
-    expect(page).not_to have_content(t('books.index.add_new_book_link'))
-  end
-end

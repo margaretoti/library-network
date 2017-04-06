@@ -1,0 +1,16 @@
+<h1 class="page-title"><%= t('.header') %></h1>
+
+<%= link_to t('.add_new_book_link'), new_admin_book_path %>
+
+<ul class="books">
+  <% @books.each do |book| %>
+    <li>
+      <%= t('simple_form.labels.title') %>
+      <%= book.title %> ,
+      <%= t('simple_form.labels.author') %>
+      <%= book.author %>
+      <%= link_to t('books.edit.link'), edit_admin_book_path(book) %>
+      <%= delete_book_link(book) %>
+    </li>
+  <% end %>
+</ul>

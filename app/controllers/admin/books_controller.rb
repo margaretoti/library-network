@@ -1,6 +1,10 @@
 class Admin::BooksController < ApplicationController
   before_action :require_admin
 
+  def index
+    @books = Book.all
+  end
+
   def new
     @book = Book.new
   end

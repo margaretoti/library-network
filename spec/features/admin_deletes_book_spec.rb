@@ -19,15 +19,3 @@ feature 'Admin deletes a book', js: true do
     end
   end
 end
-
-feature 'Patron (non admin) cannot delete a book' do
-  scenario 'ever' do
-    book = create(:book)
-    patron = create(:patron)
-
-    visit root_path(as: patron)
-
-    expect(page).to have_content(t('books.index.header'))
-    expect(page).not_to have_content(t('books.delete.link'))
-  end
-end

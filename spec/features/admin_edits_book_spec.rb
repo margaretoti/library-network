@@ -32,15 +32,3 @@ feature 'User edits an existing book' do
     click_button t('books.update.button')
   end
 end
-
-feature 'Patron (non admin) cannot edit a book' do
-  scenario 'ever' do
-    book = create(:book)
-    patron = create(:patron)
-
-    visit root_path(as: patron)
-
-    expect(page).to have_content(t('books.index.header'))
-    expect(page).not_to have_content(t('books.edit.link'))
-  end
-end

@@ -3,5 +3,7 @@ class BooksController < ApplicationController
 
   def index
     @books = Book.all
+    @available_books = @books.available
+    @unavailable_books = @books.unavailable
   end
 end

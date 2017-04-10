@@ -1,11 +1,21 @@
 <h1 class="page-title"><%= t('.header') %></h1>
 
-<ul class="books">
-  <% @books.each do |book| %>
+<h3> Available Books </h3>
+<ul class="books available">
+  <% @available_books.each do |book| %>
     <li>
-      <%= t('simple_form.labels.title') %>
-      <%= book.title %> ,
-      <%= t('simple_form.labels.author') %>
+      <%= book.title %>,
+      <%= book.author %>
+      <%= link_to "Check out", book_checkouts_path(book, current_user), method: :post %>
+    </li>
+  <% end %>
+</ul>
+
+<h3> Unavailable Books </h3>
+<ul class="books unavailable">
+  <% @unavailable_books.each do |book| %>
+    <li>
+      <%= book.title %>, 
       <%= book.author %>
     </li>
   <% end %>

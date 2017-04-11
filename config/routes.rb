@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get "/sign_up" => "users#new", as: "sign_up"
 
   resources :books, only: [:index] do
-    resources :checkouts, only: [:create]
+    resources :checkouts, only: [:create, :destroy]
   end
 
   namespace :admin do

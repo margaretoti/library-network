@@ -15,8 +15,11 @@
 <ul class="books unavailable">
   <% @unavailable_books.each do |book| %>
     <li>
-      <%= book.title %>, 
+      <%= book.title %>,
       <%= book.author %>
+      <% if current_user.checkouts.where(book: book).present? %>
+        <%= link_to "Return", book_checkout_path(book, current_user), method: :delete %>
+      <% end %>
     </li>
   <% end %>
 </ul>

@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20170410185513) do
     t.datetime "updated_at", null: false
     t.integer  "book_id",    null: false
     t.integer  "user_id",    null: false
-    t.index ["book_id"], name: "index_checkouts_on_book_id", using: :btree
+    t.index ["book_id"], name: "index_checkouts_on_book_id", unique: true, using: :btree
     t.index ["user_id"], name: "index_checkouts_on_user_id", using: :btree
   end
 

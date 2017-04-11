@@ -6,4 +6,9 @@ FactoryGirl.define do
 
     author "Book Author"
   end
+
+  factory :checkout do
+    user
+    book
+  end
 end

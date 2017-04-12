@@ -9,9 +9,7 @@ class CheckoutsController < ApplicationController
   end
 
   def destroy
-    @book = Book.find(params[:book_id])
-    @checkout = Checkout.where(user: current_user, book: @book)
-    @checkout.destroy_all
+    Checkout.where(user_id: current_user, book_id: params[:book_id]).destroy_all
 
     redirect_to root_path
   end

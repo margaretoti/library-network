@@ -14,12 +14,4 @@ feature "User borrows a book from the library" do
     expect(page).to have_checked_out_book(book.title)
     expect(page).not_to have_available_book(book.title)
   end
-
-  def have_checked_out_book(title)
-    have_css('ul.books.unavailable li', text: title)
-  end
-
-  def have_available_book(title)
-    have_css('ul.books.available li', text: title)
-  end
 end

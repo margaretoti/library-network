@@ -1,0 +1,10 @@
+<h3 class="checkouts-header">Your Books</h3>
+
+<ul class="checkouts">
+  <% @checked_out_books.each do |book| %>
+    <li>
+      <%= book.title %>,
+      <%= book.author %>
+    </li>
+  <% end %>
+</ul>

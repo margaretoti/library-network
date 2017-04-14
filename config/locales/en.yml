@@ -23,11 +23,13 @@ en:
 
   books:
     index:
+      check_out_link: Check out
       header: Library Catalog
 
   profiles:
     show:
       header: Your Books
+      return_link: Return
 
   layouts:
     application:

@@ -9,7 +9,7 @@ feature "User borrows a book from the library" do
     expect(page).to have_available_book(book.title)
     expect(page).not_to have_checked_out_book(book.title)
 
-    click_on 'Check out'
+    click_on t('books.index.check_out_link')
 
     expect(page).to have_checked_out_book(book.title)
     expect(page).not_to have_available_book(book.title)

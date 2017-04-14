@@ -6,7 +6,7 @@
     <li>
       <%= book.title %>,
       <%= book.author %>
-      <%= link_to "Check out", book_checkouts_path(book, current_user), method: :post %>
+      <%= link_to t('.check_out_link'), book_checkouts_path(book, current_user), method: :post %>
     </li>
   <% end %>
 </ul>

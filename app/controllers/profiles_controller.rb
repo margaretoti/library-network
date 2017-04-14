@@ -2,8 +2,8 @@ class ProfilesController < ApplicationController
   before_action :require_login, :allow_anyone
 
   def show
-    @checkouts = current_user.checkouts
-    
+    @checkouts = current_user.checkouts.includes(:book)
+
     render :show
   end
 end

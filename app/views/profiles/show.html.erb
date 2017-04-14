@@ -5,6 +5,7 @@
     <li>
       <%= book.title %>,
       <%= book.author %>
+      <%= link_to "Return", book_checkout_path(book, current_user), method: :delete %>
     </li>
   <% end %>
 </ul>

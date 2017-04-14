@@ -11,6 +11,6 @@ class CheckoutsController < ApplicationController
   def destroy
     Checkout.where(user_id: current_user, book_id: params[:book_id]).destroy_all
 
-    redirect_to root_path
+    redirect_to profile_path
   end
 end

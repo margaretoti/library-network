@@ -25,6 +25,10 @@ en:
     index:
       header: Library Catalog
 
+  profiles:
+    show:
+      header: Your Books
+
   layouts:
     application:
       sign_in: Sign in

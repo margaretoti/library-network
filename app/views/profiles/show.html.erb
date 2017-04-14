@@ -1,11 +1,11 @@
-<h3 class="checkouts-header">Your Books</h3>
+<h3 class="checkouts-header"><%= t('.header') %></h3>
 
 <ul class="checkouts">
-  <% @checked_out_books.each do |book| %>
+  <% @checkouts.each do |checkout| %>
     <li>
-      <%= book.title %>,
-      <%= book.author %>
-      <%= link_to "Return", book_checkout_path(book, current_user), method: :delete %>
+      <%= checkout.book.title %>,
+      <%= checkout.book.author %>
+      <%= link_to "Return", book_checkout_path(checkout.book, current_user), method: :delete %>
     </li>
   <% end %>
 </ul>

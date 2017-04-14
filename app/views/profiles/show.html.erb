@@ -5,6 +5,8 @@
     <li>
       <%= checkout.book.title %>,
       <%= checkout.book.author %>
+      <%= l checkout.created_at, format: :date %>
+      <%= l checkout.due_date, format: :date %>
       <%= link_to t('.return_link'), book_checkout_path(checkout.book, current_user), method: :delete %>
     </li>
   <% end %>

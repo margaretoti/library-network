@@ -10,6 +10,6 @@ feature 'User views profile page' do
     visit profile_path(patron)
 
     expect(page).to have_css('.checkouts-header', text: t('profiles.show.header'))
-    expect(page).to have_css('ul.checkouts li', text: book.title)
+    expect(page).to have_css('table.checkouts td', text: book.title)
   end
 end

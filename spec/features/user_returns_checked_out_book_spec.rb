@@ -15,7 +15,7 @@ feature 'User returns only books she borrowed from the library' do
 
     click_on t('books.index.check_out_link')
     visit profile_path(as: patron_2)
-    expect(page).to have_css('ul.checkouts li', text: book_2.title)
+    expect(page).to have_css('table.checkouts td', text: book_2.title)
 
     click_on t('profiles.show.return_link')
 

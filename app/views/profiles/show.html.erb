@@ -7,6 +7,7 @@
       <td><%= t('.author') %></td>
       <td><%= t('.checkout_date') %></td>
       <td><%= t('.due_date') %></td>
+      <td>Fines</td>
       <td></td>
     </tr>
   </thead>
@@ -17,6 +18,7 @@
         <td><%= checkout.book.author %></td>
         <td><%= l checkout.created_at, format: :date %></td>
         <td><%= l checkout.due_date, format: :date %></td>
+        <td><%= number_to_currency(checkout.fine) %></td>
         <td><%= link_to t('.return_link'), book_checkout_path(checkout.book, current_user), method: :delete %></td>
       </tr>
     <% end %>

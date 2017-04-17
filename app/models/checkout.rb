@@ -13,9 +13,22 @@ class Checkout < ApplicationRecord
   end
 
   def fine
-    days_overdue = (Time.zone.now - self.due_date).to_i/1.day
-    if days_overdue > 0
+    number_of_days_overdue = days_overdue
+    if overdue?
       fine = FINE_AMOUNT_PER_DAY_IN_CENTS * days_overdue
+    else
+      fine = 0
     end
+  end
+
+  def overdue?
+    number_of_days_overdue = days_overdue
+    number_of_days_overdue > 0 ? true : false
+  end
+
+  private
+
+  def days_overdue
+    (Time.zone.now - due_date).to_i/1.day
   end
 end

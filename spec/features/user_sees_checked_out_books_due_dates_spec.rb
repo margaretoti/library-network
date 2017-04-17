@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'date'
 
-feature 'User sees a list of checked out books and their due dates' do
+feature 'User sees a table of books, each with a checkout date and due date' do
   scenario 'on profile page successfully' do
     book = create(:book)
     patron = create(:patron)
@@ -10,9 +10,13 @@ feature 'User sees a list of checked out books and their due dates' do
 
     visit profile_path(as: patron)
 
-    # binding.pry
-    formatted_date = format_date(Checkout.first.due_date)
-    expect(page).to have_content(formatted_date)
+    formatted_checkout_date = format_date(book.checkouts.first.created_at)
+    formatted_due_date = format_date(book.checkouts.first.due_date)
+
+    expect(page).to have_css('td', text: t('profiles.show.checkout_date'))
+    expect(page).to have_content(formatted_checkout_date)
+    expect(page).to have_css('td', text: t('profiles.show.due_date'))
+    expect(page).to have_content(formatted_due_date)
   end
 
   def format_date(date)

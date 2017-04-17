@@ -28,7 +28,11 @@ en:
 
   profiles:
     show:
+      author: Author
+      checkout_date: Checkout Date
+      due_date: Due Date
       header: Your Books
+      title: Title
       return_link: Return
 
   layouts:

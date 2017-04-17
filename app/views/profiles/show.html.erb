@@ -1,13 +1,24 @@
 <h3 class="checkouts-header"><%= t('.header') %></h3>
 
-<ul class="checkouts">
-  <% @checkouts.each do |checkout| %>
-    <li>
-      <%= checkout.book.title %>,
-      <%= checkout.book.author %>
-      <%= l checkout.created_at, format: :date %>
-      <%= l checkout.due_date, format: :date %>
-      <%= link_to t('.return_link'), book_checkout_path(checkout.book, current_user), method: :delete %>
-    </li>
-  <% end %>
-</ul>
+<table class="checkouts">
+  <thead>
+    <tr>
+      <td><%= t('.title') %></td>
+      <td><%= t('.author') %></td>
+      <td><%= t('.checkout_date') %></td>
+      <td><%= t('.due_date') %></td>
+      <td></td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @checkouts.each do |checkout| %>
+      <tr>
+        <td><%= checkout.book.title %></td>
+        <td><%= checkout.book.author %></td>
+        <td><%= l checkout.created_at, format: :date %></td>
+        <td><%= l checkout.due_date, format: :date %></td>
+        <td><%= link_to t('.return_link'), book_checkout_path(checkout.book, current_user), method: :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -29,8 +29,8 @@ en:
   profiles:
     show:
       author: Author
-      checkout_date: Checkout Date
-      due_date: Due Date
+      checkout_date: Date Checked Out
+      due_date: Date Due
       fine: Fine
       fine_total: Total Fines Owed
       header: Your Books

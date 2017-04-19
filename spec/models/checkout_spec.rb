@@ -4,6 +4,7 @@ describe Checkout, type: :model do
   describe 'validations' do
     it { should validate_presence_of(:user) }
     it { should validate_presence_of(:book) }
+    it { should validate_presence_of(:due_on) }
 
     subject { FactoryGirl.build(:checkout) }
     it { should validate_uniqueness_of(:book) }

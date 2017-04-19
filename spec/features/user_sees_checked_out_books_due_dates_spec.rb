@@ -11,7 +11,7 @@ feature 'User sees a table of books, each with a checkout date and due date' do
     visit profile_path(as: patron)
 
     formatted_checkout_date = format_date(book.checkouts.first.created_at)
-    formatted_due_date = format_date(book.checkouts.first.due_date)
+    formatted_due_date = format_date(book.checkouts.first.due_on)
 
     expect(page).to have_css('td', text: t('profiles.show.checkout_date'))
     expect(page).to have_content(formatted_checkout_date)

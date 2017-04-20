@@ -17,13 +17,8 @@ feature 'User can renew a checked out book' do
     due_date_after_renewal = format_date(book.checkouts.first.due_on)
     expect(page).to have_due_date(due_date_after_renewal)
     expect(due_date_after_renewal).to eq(expected_due_date_after_renewal)
+    expect(page).to have_content(t('checkouts.update.successful_message'))
   end
-
-  # scenario 'unsucessfully if book is overdue' do
-  # end
-  #
-  # scenario 'no more than twice' do
-  # end
 
   def format_date(date)
     date.strftime("%b %-d, %Y")

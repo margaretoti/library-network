@@ -9,10 +9,6 @@ class Checkout < ApplicationRecord
   validates :book, presence: true, uniqueness: true
   validates :due_on, presence: true
 
-  # def due_date
-  #   self.created_at + CHECKOUT_PERIOD_IN_DAYS.days
-  # end
-
   def fine
     number_of_days_overdue = days_overdue
     if overdue?
@@ -25,11 +21,6 @@ class Checkout < ApplicationRecord
   def overdue?
     number_of_days_overdue = days_overdue
     number_of_days_overdue > 0 ? true : false
-  end
-
-  def renew
-    self.due_on = self.due_on + CHECKOUT_PERIOD_IN_DAYS.days
-    update(due_on: due_on)
   end
 
   private

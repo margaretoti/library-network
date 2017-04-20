@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   after_action :ensure_authorization_checked
 
+  add_flash_types :success, :error 
+
   private
 
   def require_admin

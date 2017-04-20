@@ -12,9 +12,4 @@ class Book < ApplicationRecord
   def self.unavailable
     includes(:checkouts).where.not(checkouts: { id: nil })
   end
-
-  def borrow(user:)
-    due_date = DateTime.now + Checkout::CHECKOUT_PERIOD_IN_DAYS.days
-    Checkout.create(book: self, user: user, due_on: due_date)
-  end
 end

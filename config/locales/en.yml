@@ -26,6 +26,12 @@ en:
       check_out_link: Check out
       header: Library Catalog
 
+  checkouts:
+    create:
+      successful_message: Enjoy the book
+    update:
+      successful_message: Book successfully renewed
+
   profiles:
     show:
       author: Author

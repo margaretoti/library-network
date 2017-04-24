@@ -9,7 +9,7 @@ class CheckoutsController < ApplicationController
 
   def update
     @checkout = Checkout.find(params[:id])
-    RenewBook.process(@checkout)
+    RenewBook.process(checkout: @checkout, user: current_user)
     redirect_to profile_path, success: t('.successful_message')
   end
 

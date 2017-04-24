@@ -23,4 +23,27 @@ feature 'User returns only books she borrowed from the library' do
     expect(page).to have_no_content(book_2.title)
     expect(page).to have_no_content(book_1.title)
   end
+
+  scenario 'accumulated fines are correctly reflected in total fines' do
+    book = create(:book)
+    patron = create(:patron)
+    checkout = create(:checkout, user: patron, book: book)
+
+    date_when_book_is_one_day_overdue = DateTime.now + (Checkout::CHECKOUT_PERIOD_IN_DAYS + 1).days
+    Timecop.travel(date_when_book_is_one_day_overdue) do
+      visit profile_path(as: patron)
+save_and_open_page
+      click_on "Return"
+
+      binding.pry
+    end
+
+save_and_open_page
+    expect(page).to have_total_fines_of('0.10')
+    expect(page).to have_no_content(book.title)
+  end
+
+  def have_total_fines_of(dollar_amount)
+    have_css('p.total_fines', text: dollar_amount)
+  end
 end

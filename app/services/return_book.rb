@@ -9,7 +9,10 @@ class ReturnBook
   end
 
   def process
-    Checkout.where(book_id: @book_id, user_id: @user_id).destroy_all
+    # Checkout.where(book_id: @book_id, user_id: @user_id).destroy_all
+    checkout = Checkout.where(book_id: @book_id, user_id: @user_id).last
+    book_fine = checkout.calculate_fine
+    checkout.update!(fine: book_fine, closed_at: DateTime.now)
   end
 
   private

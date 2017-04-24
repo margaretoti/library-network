@@ -7,7 +7,7 @@ class User < ApplicationRecord
   validates :name, presence: true
 
   def total_fines
-    total = checkouts.inject(0) { |total, checkout| total + checkout.fine }
+    total = checkouts.inject(0) { |total, checkout| total + checkout.calculate_fine }
     total = sprintf('%.2f', total)
   end
 end

@@ -9,7 +9,7 @@ class CheckOutBook
   end
 
   def process
-    due_date = DateTime.now + Checkout::CHECKOUT_PERIOD_IN_DAYS.days
+    due_date = Time.current + Checkout::CHECKOUT_PERIOD_IN_DAYS.days
     Checkout.create!(book: @book, user: @user, due_on: due_date)
   end
 

@@ -18,7 +18,7 @@
         <td><%= checkout.book.author %></td>
         <td><%= l checkout.created_at, format: :date %></td>
         <td><%= l checkout.due_on, format: :date %></td>
-        <td class='fine'><%= humanized_money_with_symbol checkout.calculate_fine %></td>
+        <td class='fine'><%= humanized_money_with_symbol(checkout.calculate_fine_including_related_checkouts) %></td>
         <td><%= link_to 'Renew', book_checkout_path(checkout.book, checkout), method: :put %></td>
         <td><%= link_to t('.return_link'), book_checkout_path(checkout.book, current_user), method: :delete %></td>
       </tr>

@@ -10,6 +10,6 @@ FactoryGirl.define do
   factory :checkout do
     user
     book
-    due_on DateTime.now + Checkout::CHECKOUT_PERIOD_IN_DAYS.days
+    due_on Time.current + Checkout::CHECKOUT_PERIOD_IN_DAYS.days
   end
 end

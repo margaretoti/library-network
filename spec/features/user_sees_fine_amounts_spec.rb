@@ -8,11 +8,10 @@ feature 'User sees fine amounts for individual overdue books and the total fines
     checkout = create(:checkout, user: patron, book: book)
     visit profile_path(as: patron)
 
-    date_when_book_is_one_day_overdue = DateTime.now + (Checkout::CHECKOUT_PERIOD_IN_DAYS + 1).days
+    date_when_book_is_one_day_overdue = Time.current + (Checkout::CHECKOUT_PERIOD_IN_DAYS + 1).days
     Timecop.travel(date_when_book_is_one_day_overdue) do
       visit profile_path(as: patron)
     end
-    save_and_open_page
     expect(page).to have_column_header(t('profiles.show.fine'))
     expect(page).to have_fine_on_a_single_book_of('$0.10')
     expect(page).to have_content(t('profiles.show.fine_total'))

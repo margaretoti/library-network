@@ -12,27 +12,36 @@ class Checkout < ApplicationRecord
   monetize :fine_cents
 
   def calculate_fine
-    number_of_days_overdue = days_overdue
-    total_fine_for_book = fine_cents
     if overdue?
-      total_fine_for_book += FINE_AMOUNT_PER_DAY_IN_CENTS * number_of_days_overdue
-      puts "number of days overdue #{number_of_days_overdue}"
+      number_of_days_overdue = days_overdue
+      checkout_fine = fine_cents + number_of_days_overdue * FINE_AMOUNT_PER_DAY_IN_CENTS
+    else
+      checkout_fine = fine_cents
     end
-    puts "fines are #{fine_cents} and #{total_fine_for_book}"
-    Money.new(total_fine_for_book)
+    Money.new(checkout_fine)
+  end
+
+  def calculate_fine_including_related_checkouts
+    book_checkouts = Checkout.where(user_id: self.user_id, book_id: self.book_id)
+    total = book_checkouts.inject(Money.new(0)) { |total, book_checkout| total + book_checkout.calculate_fine }
+    total
   end
 
   def overdue?
-    if closed_at.present? # checkout is not overdue if it has been closed
+    if closed?
       false
     else
-      days_overdue > 0 ? true : false
+      days_overdue > 0
     end
   end
 
   private
 
   def days_overdue
-    (Time.zone.now - self.due_on).to_i/1.day
+    (Time.current - due_on).to_i / 1.day
+  end
+
+  def closed?
+    closed_at.present?
   end
 end

@@ -29,16 +29,13 @@ feature 'User returns only books she borrowed from the library' do
     patron = create(:patron)
     checkout = create(:checkout, user: patron, book: book)
 
-    date_when_book_is_one_day_overdue = DateTime.now + (Checkout::CHECKOUT_PERIOD_IN_DAYS + 1).days
+    date_when_book_is_one_day_overdue = Time.current + (Checkout::CHECKOUT_PERIOD_IN_DAYS + 1).days
     Timecop.travel(date_when_book_is_one_day_overdue) do
       visit profile_path(as: patron)
-save_and_open_page
-      click_on "Return"
 
-      binding.pry
+      click_on "Return"
     end
 
-save_and_open_page
     expect(page).to have_total_fines_of('0.10')
     expect(page).to have_no_content(book.title)
   end

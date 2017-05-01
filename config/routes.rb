@@ -18,6 +18,10 @@ Rails.application.routes.draw do
     resources :checkouts, only: [:create, :update, :destroy]
   end
 
+  resources :checkouts, only: [] do
+    resources :renewals, only: [:create]
+  end
+
   namespace :admin do
     resources :books, only: [:index, :new, :edit, :create, :update, :destroy]
   end

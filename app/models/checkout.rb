@@ -12,6 +12,10 @@ class Checkout < ApplicationRecord
 
   monetize :fine_cents
 
+  def self.open
+    where(closed_at: nil)
+  end
+
   def overdue?
     if closed?
       false

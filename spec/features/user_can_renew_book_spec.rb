@@ -10,7 +10,6 @@ feature 'User can renew a checked out book' do
     visit profile_path(as: patron)
 
     click_on t('profiles.show.renew_link')
-
     checkout.reload
 
     original_checkout_date = book.checkouts.first.created_at
@@ -18,7 +17,7 @@ feature 'User can renew a checked out book' do
     due_date_after_renewal = format_date(book.checkouts.last.due_on)
     expect(page).to have_due_date(due_date_after_renewal)
     expect(due_date_after_renewal).to eq(expected_due_date_after_renewal)
-    expect(page).to have_content(t('checkouts.update.successful_message'))
+    expect(page).to have_content(t('renewals.create.successful_message'))
   end
 
   scenario 'prior fines are included when an overdue book is renewed' do
@@ -31,9 +30,8 @@ feature 'User can renew a checked out book' do
       visit profile_path(as: patron)
 
       click_on t('profiles.show.renew_link')
+      checkout.reload
     end
-
-    checkout.reload
 
     expect(page).to have_fine_on_a_single_book_of('$0.10')
     expect(page).to have_total_fines_of('$0.10')
@@ -49,7 +47,6 @@ feature 'User can renew a checked out book' do
       visit profile_path(as: patron)
 
       click_on t('profiles.show.renew_link')
-
       checkout.reload
     end
 

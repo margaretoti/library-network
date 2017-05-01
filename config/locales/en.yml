@@ -44,6 +44,10 @@ en:
       renew_link: Renew
       return_link: Return
 
+  renewals:
+    create:
+      successful_message: Book successfully renewed
+
   layouts:
     application:
       sign_in: Sign in

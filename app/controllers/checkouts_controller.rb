@@ -7,12 +7,6 @@ class CheckoutsController < ApplicationController
     redirect_to root_path, success: t('.successful_message')
   end
 
-  def update
-    @checkout = Checkout.find(params[:id])
-    RenewBook.process(checkout: @checkout, user: current_user)
-    redirect_to profile_path, success: t('.successful_message')
-  end
-
   def destroy
     ReturnBook.process(book_id: params[:book_id], user_id: current_user)
     redirect_to profile_path

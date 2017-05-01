@@ -11,11 +11,13 @@ class RenewBook
   def process
     book_fine = CheckoutFineCalculator.for(@checkout)
 
-    @checkout.update!(closed_at: Time.current, fine: book_fine)
-    Checkout.create!(book: find_book(@checkout),
-                     user: @user,
-                     due_on: calculate_due_date(@checkout),
-                     fine_cents: 0)
+    ApplicationRecord.transaction do
+      @checkout.update!(closed_at: Time.current, fine: book_fine)
+      Checkout.create!(book: find_book(@checkout),
+                       user: @user,
+                       due_on: calculate_due_date(@checkout),
+                       fine_cents: 0)
+    end 
   end
 
   private

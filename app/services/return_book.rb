@@ -9,13 +9,18 @@ class ReturnBook
   end
 
   def process
-    checkout = Checkout.where(book_id: @book_id, user_id: @user_id).last
-    book_fine = checkout.calculate_fine
+    book_fine = CheckoutFineCalculator.for(last_checkout)
 
-    checkout.update!(fine: book_fine, closed_at: Time.current)
+    last_checkout.update!(fine: book_fine, closed_at: Time.current)
   end
 
   private
 
   attr_reader :book_id, :user_id
+
+  def last_checkout
+    checkouts = Checkout.where(book_id: @book_id, user_id: @user_id, closed_at: nil)
+    ordered_checkouts = checkouts.order(id: :asc)
+    ordered_checkouts.last
+  end
 end

@@ -18,7 +18,7 @@
         <td><%= checkout.book.author %></td>
         <td><%= l checkout.created_at, format: :date %></td>
         <td><%= l checkout.due_on, format: :date %></td>
-        <td class='fine'><%= humanized_money_with_symbol(checkout.calculate_fine_including_related_checkouts) %></td>
+        <td class='fine'><%= humanized_money_with_symbol(BookFineCalculator.including_related_checkouts(checkout)) %></td>
         <td><%= link_to 'Renew', book_checkout_path(checkout.book, checkout), method: :put %></td>
         <td><%= link_to t('.return_link'), book_checkout_path(checkout.book, current_user), method: :delete %></td>
       </tr>
@@ -26,4 +26,4 @@
   </tbody>
 </table>
 
-<p class='total_fines'>Total Fines Owed: <%= number_to_currency(current_user.total_fines) %></p>
+<p class='total_fines'>Total Fines Owed: <%= number_to_currency(UserFineCalculator.total(current_user)) %></p>

@@ -9,9 +9,7 @@ class RenewBook
   end
 
   def process
-    # book = Book.find(@checkout.book_id)
-    # due_date = @checkout.due_on + Checkout::CHECKOUT_PERIOD_IN_DAYS.days
-    book_fine = @checkout.calculate_fine
+    book_fine = CheckoutFineCalculator.for(@checkout)
 
     @checkout.update!(closed_at: Time.current, fine: book_fine)
     Checkout.create!(book: find_book(@checkout),

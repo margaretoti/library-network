@@ -41,6 +41,7 @@ en:
       fine_total: Total Fines Owed
       header: Your Books
       title: Title
+      renew_link: Renew
       return_link: Return
 
   layouts:

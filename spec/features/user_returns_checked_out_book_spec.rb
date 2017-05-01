@@ -33,14 +33,10 @@ feature 'User returns only books she borrowed from the library' do
     Timecop.travel(date_when_book_is_one_day_overdue) do
       visit profile_path(as: patron)
 
-      click_on "Return"
+      click_on t('profiles.show.return_link')
     end
 
     expect(page).to have_total_fines_of('0.10')
     expect(page).to have_no_content(book.title)
-  end
-
-  def have_total_fines_of(dollar_amount)
-    have_css('p.total_fines', text: dollar_amount)
   end
 end

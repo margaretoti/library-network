@@ -9,7 +9,7 @@ feature 'User can renew a checked out book' do
 
     visit profile_path(as: patron)
 
-    click_on 'Renew'
+    click_on t('profiles.show.renew_link')
 
     checkout.reload
 
@@ -30,16 +30,10 @@ feature 'User can renew a checked out book' do
     Timecop.travel(date_one_day_overdue) do
       visit profile_path(as: patron)
 
-      click_on 'Renew'
+      click_on t('profiles.show.renew_link')
     end
 
     checkout.reload
-
-    # one_day_overdue = 1
-    # expected_fine_in_cents = one_day_overdue * Checkout::FINE_AMOUNT_PER_DAY_IN_CENTS
-    # fine_on_newly_created_checkout = book.checkouts.last.fine_cents
-    #
-    # expect(fine_on_newly_created_checkout).to eq(expected_fine_in_cents)
 
     expect(page).to have_fine_on_a_single_book_of('$0.10')
     expect(page).to have_total_fines_of('$0.10')
@@ -54,22 +48,22 @@ feature 'User can renew a checked out book' do
     Timecop.travel(date_overdue) do
       visit profile_path(as: patron)
 
-      click_on 'Renew'
+      click_on t('profiles.show.renew_link')
 
       checkout.reload
-
-      expect(page).to have_fine_on_a_single_book_of('$0.10')
-      expect(page).to have_total_fines_of('$0.10')
     end
+
+    expect(page).to have_fine_on_a_single_book_of('$0.10')
+    expect(page).to have_total_fines_of('$0.10')
 
     original_due_date = book.checkouts.first.due_on
     date_overdue_again = date_when_book_is_one_day_overdue(original_due_date)
     Timecop.travel(date_overdue_again) do
       visit profile_path(as: patron)
-
-      expect(page).to have_fine_on_a_single_book_of('$0.20')
-      expect(page).to have_total_fines_of('$0.20')
     end
+
+    expect(page).to have_fine_on_a_single_book_of('$0.20')
+    expect(page).to have_total_fines_of('$0.20')
   end
 
   def date_when_book_is_one_day_overdue(start_date)
@@ -82,13 +76,5 @@ feature 'User can renew a checked out book' do
 
   def have_due_date(date)
     have_content(date)
-  end
-
-  def have_fine_on_a_single_book_of(dollar_amount)
-    have_css('td.fine', text: dollar_amount)
-  end
-
-  def have_total_fines_of(dollar_amount)
-    have_css('p.total_fines', text: dollar_amount)
   end
 end

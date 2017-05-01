@@ -7,7 +7,7 @@ describe Checkout, type: :model do
     it { should validate_presence_of(:due_on) }
 
     subject { FactoryGirl.build(:checkout) }
-    # it { should validate_uniqueness_of(:book) }
+    it { should validate_uniqueness_of(:book) }
   end
 
   describe 'associations' do

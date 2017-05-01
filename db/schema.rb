@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20170424182702) do
     t.integer  "fine_cents",    default: 0,     null: false
     t.string   "fine_currency", default: "USD", null: false
     t.datetime "closed_at"
-    t.index ["book_id"], name: "index_checkouts_on_book_id", using: :btree
+    t.index ["book_id"], name: "index_checkouts_on_book_id", unique: true, where: "(closed_at IS NULL)", using: :btree
     t.index ["user_id"], name: "index_checkouts_on_user_id", using: :btree
   end
 

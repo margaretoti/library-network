@@ -6,7 +6,8 @@ class Checkout < ApplicationRecord
   belongs_to :book
 
   validates :user, presence: true
-  validates :book, presence: true #, uniqueness: true
+  validates :book, presence: true
+  validates_uniqueness_of :book, conditions: -> { where(closed_at: nil) }
   validates :due_on, presence: true
 
   monetize :fine_cents

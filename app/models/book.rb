@@ -18,4 +18,8 @@ class Book < ApplicationRecord
        WHERE open_checkouts.id IS NULL"
     )
   end
+
+  def self.search(search)
+    where("author ILIKE ? OR title ILIKE ?", "%#{search}%", "%#{search}%")
+  end
 end

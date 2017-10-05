@@ -1,5 +1,7 @@
 <h1 class="page-title"><%= t('.header') %></h1>
 
+<%= render "books_search" %>
+
 <h3> Available Books </h3>
 <ul class="books available">
   <% @available_books.each do |book| %>

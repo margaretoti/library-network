@@ -25,6 +25,11 @@ en:
     index:
       check_out_link: Check out
       header: Library Catalog
+    search:
+      no_results: There are no books containing the term %{param}
+      placeholder: Search by book or by author
+      reset: Clear search
+      submit: Search
 
   checkouts:
     create:

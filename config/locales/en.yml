@@ -25,8 +25,13 @@ en:
     index:
       check_out_link: Check out
       header: Library Catalog
-    search:
+
+  book_searches:
+    index:
+      header: Search Results for %{param}
+      new_search: New search
       no_results: There are no books containing the term %{param}
+    book_search_bar:
       placeholder: Search by book or by author
       reset: Clear search
       submit: Search

@@ -1,0 +1,16 @@
+<%= link_to t('.new_search'), books_path %>
+<h3> <%= t('book_searches.index.header', param: params[:search]) %> </h3>
+
+<ul class="search_results">
+  <% @book_results.each do |book| %>
+    <li>
+      <%= book.title %>,
+      <%= book.author %>
+      <%= link_to t('books.index.check_out_link'), book_checkouts_path(book, current_user), method: :post %>
+    </li>
+  <% end %>
+</ul>
+
+<% if @book_results.blank? %>
+  <h4><%= t('book_searches.index.no_results', param: params[:search]) %>.</h4>
+<% end %>

@@ -18,6 +18,8 @@ Rails.application.routes.draw do
     resources :checkouts, only: [:create, :update, :destroy]
   end
 
+  resource :book_search, only: [:show]
+
   resources :checkouts, only: [] do
     resources :renewals, only: [:create]
   end

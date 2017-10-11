@@ -12,6 +12,7 @@ bundle check || bundle install
 
 # Set up database and add any development seed data
 bin/rake dev:prime
+bin/rake db:seed
 
 # Add binstubs to PATH via export PATH=".git/safe/../../bin:$PATH" in ~/.zshenv
 mkdir -p .git/safe
